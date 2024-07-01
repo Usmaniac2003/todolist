@@ -1,21 +1,24 @@
 const express=require('express');
 const app=express();
-const PORT=3000;
+require('dotenv').config();
+
+const PORT=process.env.PORT;
 const localhost="mongodb://127.0.0.1:27017/";
-const DB_NAME="URL_SHORTNER";
+const Atlas=process.env.DB
+const DB_NAME="TO_DO_LIST";
 const URL=localhost+DB_NAME;
 //DB connection
 const {Connect_to_Mongo_DB}=require('./connect');
-Connect_to_Mongo_DB(URL);
+Connect_to_Mongo_DB(Atlas);
 //Router Connections
-const urlRouter=require('./routes/url');
+const ExampleRouter=require('./routes/example');
 app.use(express.json());
-app.use('/url',urlRouter);
+app.use('/example',ExampleRouter);
 
 app.get("/",(req,res)=>{
     res.json("Welcome to URL shortener)");
 })
 //Listening to APP through PORT 3000.
-app.listen(PORT,()=>{
-console.log("Server Started at PORT: "+PORT);
+app.listen(process.env.PORT || 3000,()=>{
+console.log("Server Started at PORT:Atlas ");
 });

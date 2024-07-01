@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 //Schema for Short URL 
-const urlSchema=new mongoose.Schema(
+const ExampleSchema=new mongoose.Schema(
 {
 
     shortID:{
@@ -9,16 +9,15 @@ const urlSchema=new mongoose.Schema(
         required:true,
         unique:true,
     },
-    redirectURL:{
+    Name:{
         type:String,
         required:true,
-    },
-    visitHistory:[{timestamps:{type:Number}}]
+    }
 }
 ,{timestamps:true});
 
 
 //Model of Short URL
-const URL=new mongoose.model('url',urlSchema);
+const Example=new mongoose.model('Example',ExampleSchema);
 
-module.exports=URL;
+module.exports=Example;
